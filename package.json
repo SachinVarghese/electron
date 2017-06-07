@@ -4,8 +4,17 @@
   "description": "electron test",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron .",
+    "create": "rimraf ./myApp-linux-x64* && electron-packager . myApp --electron-version=1.6.10 --ignore=node_modules/electron*",
+    "pack": "asar pack ./myApp-linux-x64/resources/app ./myApp-linux-x64/resources/app.asar",
+    "clean": "rimraf ./myApp-linux-x64/resources/app/",
+    "build":"npm run create && npm run pack && npm run clean"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "asar": "^0.13.0",
+    "electron-packager": "^8.7.1",
+    "rimraf": "^2.6.1"
+  }
 }
